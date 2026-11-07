@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GHUY RUBIK GUIDE – Hướng dẫn giải Rubik 3x3 cho người mới</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0d17;--card:#141829;--line:#262c47;--tx:#e9ecff;--mu:#9aa3cc;--a:#6c7bff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(130px + env(safe-area-inset-top,0px))}
+body{margin:0;color:var(--tx);font:16px/1.65 'Be Vietnam Pro',system-ui,sans-serif;background:radial-gradient(900px 500px at 85% -10%,#2f35862e,transparent),radial-gradient(700px 500px at -10% 40%,#8a2f5f22,transparent),var(--bg)}
+body:before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:20}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:19;background:#0b0d17ec;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+#bar .in{display:flex;gap:12px;align-items:center;padding:10px 16px;max-width:1040px;margin:auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--tx);text-decoration:none;letter-spacing:.5px}
+.back{margin-left:auto;background:var(--a);color:#fff;border-radius:999px;padding:6px 14px;text-decoration:none;font-weight:600;font-size:14px}
+#toc{display:flex;gap:6px;overflow-x:auto;padding:0 16px 8px;max-width:1040px;margin:auto}
+#toc button{flex:none;background:#1b2038;border:1px solid var(--line);color:var(--mu);border-radius:999px;padding:4px 12px;font-size:13px}
+#toc button.on{background:var(--tc,var(--a));color:#0b0d17;border-color:transparent;font-weight:600}
+#pg{display:block;height:3px;width:0;background:linear-gradient(90deg,#4aa3ff,#ff8a2b,#ffd500)}
+body[data-pg=home] .back,body[data-pg=home] #toc,body[data-pg=home] #pg{display:none}
+main{max-width:1040px;margin:auto;padding:0 16px 80px}
+.hero{text-align:center;padding:28px 0 10px}
+#hero{height:min(46vh,380px);touch-action:pan-y}
+#hero canvas,.cv canvas{display:block;width:100%!important;height:100%!important;touch-action:pan-y}
+h1{font-size:clamp(26px,5vw,46px);line-height:1.15;margin:8px 0;font-weight:800}
+.sub{color:var(--mu);margin:0 0 22px}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.tier{display:block;text-decoration:none;color:var(--tx);background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:20px;padding:20px;text-align:left;transition:transform .2s,box-shadow .2s}
+.tier:hover{transform:translateY(-4px);box-shadow:0 12px 30px -12px var(--c)}
+.tier b{font-size:22px;display:block}.tier span{color:var(--mu);font-size:14px}
+.tier i{font-style:normal;font-size:30px;display:block;margin-bottom:6px}
+.ntn{margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.ntn h2{margin:0 0 12px}
+.ng{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.ng div{background:#1b2038;border-radius:12px;padding:10px 12px;color:var(--mu);font-size:14px}
+.ng b{display:inline-block;min-width:34px;color:#0b0d17;background:#ffd500;border-radius:8px;text-align:center;margin-right:8px;font-size:15px}
+.step{margin:28px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(16px,3vw,30px)}
+.tag{font-weight:800;font-size:14px}
+.card h2{margin:2px 0 8px;font-size:clamp(22px,4vw,32px)}
+.card p{max-width:70ch;margin:8px 0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pills div{background:#1b2038;border-radius:12px;padding:8px 12px;font-size:14px;color:var(--mu)}
+.pills b{color:#0b0d17;background:var(--pc,#fff);border-radius:50%;display:inline-block;width:22px;height:22px;text-align:center;line-height:22px;margin-right:6px;font-size:13px}
+.warn{background:#3a2a10;border:1px solid #8a6417;color:#ffd48a;border-radius:14px;padding:12px 14px;margin:12px 0}
+.demo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center;margin-top:18px;background:#0f1222;border:1px solid var(--line);border-radius:20px;padding:14px}
+.cv{height:320px;touch-action:pan-y;cursor:grab}
+.side h3{margin:0 0 6px;font-size:17px}
+.big{font-size:clamp(18px,3vw,26px);font-weight:800;letter-spacing:1px;margin:4px 0 10px;word-break:break-word}
+.chips{display:flex;flex-wrap:wrap;gap:5px;max-height:150px;overflow:auto}
+.chip{background:#1b2038;border:1px solid var(--line);border-radius:8px;padding:2px 9px;font-weight:700;color:var(--mu);transition:all .2s}
+.chip.done{color:#fff;background:#232a4d}
+.chip.on{background:#ffd500;color:#0b0d17;transform:scale(1.18);border-color:transparent}
+.cap{color:var(--mu);font-size:14px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.btns button{background:#232a4d;color:var(--tx);border:1px solid #38407a;border-radius:12px;padding:8px 16px;font-weight:600}
+.btns .pl{background:var(--a);border-color:transparent}
+.fin{margin:34px 0;text-align:center;border-radius:24px;padding:28px 16px;background:linear-gradient(135deg,#1f2a6a,#5a2a6a);border:1px solid #4a54a8}
+.fin h2{margin:0;font-size:clamp(22px,4.5vw,38px)}
+.fin .cv{height:260px;max-width:420px;margin:10px auto}
+.fin button{background:#ffd500;color:#0b0d17;border:0;border-radius:999px;padding:10px 22px;font-weight:800}
+.cf{position:fixed;top:-14px;width:9px;height:14px;z-index:50;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(108vh) rotate(720deg)}}
+@media(max-width:760px){.demo{grid-template-columns:minmax(0,1fr)}.cv{height:280px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tier,.chip{transition:none}}
+</style></head><body data-pg="home">
+<header id="bar"><div class="in"><a class="brand" href="#home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="6" fill="#14161f"/><g stroke="none"><rect x="1.8" y="1.8" width="6.4" height="6.4" rx="1.2" fill="#ffd500"/><rect x="9.8" y="1.8" width="6.4" height="6.4" rx="1.2" fill="#14a44d"/><rect x="17.8" y="1.8" width="6.4" height="6.4" rx="1.2" fill="#1d5fd1"/><rect x="1.8" y="9.8" width="6.4" height="6.4" rx="1.2" fill="#ff6a13"/><rect x="9.8" y="9.8" width="6.4" height="6.4" rx="1.2" fill="#f4f4f4"/><rect x="17.8" y="9.8" width="6.4" height="6.4" rx="1.2" fill="#d7263d"/><rect x="1.8" y="17.8" width="6.4" height="6.4" rx="1.2" fill="#14a44d"/><rect x="9.8" y="17.8" width="6.4" height="6.4" rx="1.2" fill="#ffd500"/><rect x="17.8" y="17.8" width="6.4" height="6.4" rx="1.2" fill="#ff6a13"/></g></svg>GHUY RUBIK GUIDE</a><a class="back" href="#home">← Quay lại các tầng</a></div><div id="toc"></div><i id="pg"></i></header>
+<main>
+<section class="page" id="home">
+ <div class="hero"><div id="hero"></div>
+ <h1>GIẢI RUBIK 3x3 – DÀNH CHO NGƯỜI MỚI</h1>
+ <p class="sub">Học từng bước • Xem minh họa • Làm theo dễ dàng</p></div>
+ <div class="tiers" id="tiers"></div>
+ <div class="ntn"><h2>Ký hiệu cơ bản</h2><div class="ng">
+ <div><b>R</b>Right – mặt phải</div><div><b>L</b>Left – mặt trái</div><div><b>U</b>Up – mặt trên</div><div><b>D</b>Down – mặt dưới</div>
+ <div><b>F</b>Front – mặt trước</div><div><b>B</b>Back – mặt sau</div><div><b>R'</b>Dấu ' = quay ngược chiều kim đồng hồ</div><div><b>R2</b>Số 2 = quay 180°</div><div><b>y</b>Xoay cả khối Rubik (chỉ để cầm lại cho đúng hướng)</div></div>
+ <p class="cap">Chiều quay được tính khi nhìn thẳng vào mặt đó. Tay cầm Rubik: tâm vàng ở trên, tâm xanh lá ở phía trước (tâm trắng ở dưới). Bạn có thể kéo chuột/ngón tay để xoay mô hình 3D.</p></div>
+</section>
+<section class="page" id="tang1" hidden></section>
+<section class="page" id="tang2" hidden></section>
+<section class="page" id="tang3" hidden></section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=(s,e=document)=>e.querySelector(s);
+const C={U:0xffd500,D:0xf4f4f4,F:0x14a44d,B:0x1d5fd1,R:0xff6a13,L:0xd7263d};
+const N={U:[0,1,0],D:[0,-1,0],F:[0,0,1],B:[0,0,-1],R:[1,0,0],L:[-1,0,0]};
+const RT={F:[0,0],B:[0,Math.PI],R:[0,Math.PI/2],L:[0,-Math.PI/2],U:[-Math.PI/2,0],D:[Math.PI/2,0]};
+const AX={U:['y',1,-1],D:['y',-1,1],R:['x',1,-1],L:['x',-1,1],F:['z',1,-1],B:['z',-1,1],y:['y',null,-1]};
+const inv=a=>a.split(' ').reverse().map(m=>m.endsWith("'")?m.slice(0,-1):m.endsWith('2')?m:m+"'").join(' ');
+const rep=(a,n)=>Array(n).fill(a).join(' ');
+const live=new Set();
+
+class Cube{
+ constructor(el,o){
+  this.el=el;this.o=o||{};this.vis=true;this.i=0;this.gap=0;this.mv=[];this.cur=null;this.play=false;
+  const w=el.clientWidth||300,h=el.clientHeight||300;
+  const r=this.r=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(w,h);el.appendChild(r.domElement);
+  this.s=new THREE.Scene();this.cam=new THREE.PerspectiveCamera(35,w/h,.1,50);this.cam.position.set(0,0,11.5);
+  this.root=new THREE.Group();this.root.rotation.set(.55,-.7,0);this.s.add(this.root);
+  this.cb=[];
+  const bg=new THREE.BoxGeometry(.97,.97,.97),pg=new THREE.PlaneGeometry(.8,.8);
+  for(let x=-1;x<=1;x++)for(let y=-1;y<=1;y++)for(let z=-1;z<=1;z++){
+   const g=new THREE.Group(),b=new THREE.Mesh(bg,new THREE.MeshBasicMaterial({color:0x14161f}));
+   g.add(b);g.userData={b,p:new THREE.Vector3(x,y,z)};
+   for(const f in N){const n=N[f];if(n[0]*x+n[1]*y+n[2]*z!==1)continue;
+    const m=new THREE.Mesh(pg,new THREE.MeshBasicMaterial({color:C[f]}));
+    m.position.set(n[0]*.49,n[1]*.49,n[2]*.49);m.rotation.set(RT[f][0],RT[f][1],0);g.add(m)}
+   g.position.set(x,y,z);this.root.add(g);this.cb.push(g)}
+  let d=null;const cv=r.domElement;
+  cv.addEventListener('pointerdown',e=>d=[e.clientX,e.clientY]);
+  this._up=()=>d=null;addEventListener('pointerup',this._up);
+  cv.addEventListener('pointermove',e=>{if(d){this.root.rotation.y+=(e.clientX-d[0])*.008;this.root.rotation.x+=(e.clientY-d[1])*.008;d=[e.clientX,e.clientY]}});
+  this.io=new IntersectionObserver(e=>this.vis=e[0].isIntersecting);this.io.observe(el);
+  live.add(this);
+ }
+ reset(){
+  if(this.cur){this.root.remove(this.cur.pv)}
+  this.cb.forEach(g=>{this.root.add(g);g.position.copy(g.userData.p);g.quaternion.identity();g.userData.b.material.color.set(0x14161f)});
+  this.cur=null;this.i=0;this.gap=0;this.play=false;
+  for(const m of(this.o.setup||'').split(' ').filter(Boolean)){this.begin(m);this.end()}
+  this.o.onStep&&this.o.onStep(-1);
+ }
+ begin(m){
+  const [a,l,s]=AX[m[0]],q=m.endsWith("'")?-1:1,k=m.endsWith('2')?2:1;
+  const pv=new THREE.Group();this.root.add(pv);
+  const sel=this.cb.filter(g=>l===null||Math.round(g.position[a])===l);
+  sel.forEach(g=>{pv.attach(g);l!==null&&g.userData.b.material.color.set(0x6c7bff)});
+  this.cur={pv,a,sel,t:0,T:s*q*k*Math.PI/2,d:k*1.1};
+ }
+ end(){
+  const c=this.cur;c.pv.rotation[c.a]=c.T;c.pv.updateMatrixWorld(true);
+  c.sel.forEach(g=>{this.root.attach(g);g.position.set(Math.round(g.position.x),Math.round(g.position.y),Math.round(g.position.z));g.userData.b.material.color.set(0x14161f)});
+  this.root.remove(c.pv);this.cur=null;
+ }
+ tick(dt){
+  if(this.o.spin)this.root.rotation.y+=dt*.35;
+  if(!this.play)return;
+  if(this.cur){
+   this.cur.t+=dt/this.cur.d;const k=Math.min(1,this.cur.t),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+   this.cur.pv.rotation[this.cur.a]=this.cur.T*e;
+   if(k>=1){this.end();this.i++;this.gap=.4}
+  }else if(this.gap>0)this.gap-=dt;
+  else if(this.i<this.mv.length){this.begin(this.mv[this.i]);this.o.onStep&&this.o.onStep(this.i)}
+  else{this.play=false;this.o.onEnd&&this.o.onEnd()}
+ }
+ resize(){const w=this.el.clientWidth,h=this.el.clientHeight;if(w&&h){this.r.setSize(w,h);this.cam.aspect=w/h;this.cam.updateProjectionMatrix()}}
+ dispose(){live.delete(this);this.io.disconnect();removeEventListener('pointerup',this._up);this.r.dispose();this.r.forceContextLoss();this.r.domElement.remove()}
+}
+let last=0;
+(function loop(t){const dt=Math.min(.05,(t-last)/1000);last=t;live.forEach(c=>{if(c.vis){c.tick(dt);c.r.render(c.s,c.cam)}});requestAnimationFrame(loop)})(0);
+addEventListener('resize',()=>live.forEach(c=>c.resize()));
+
+/* ===== NỘI DUNG ===== */
+const SUNE="R U R' U R U2 R'";
+const F1="F R U R' U' F'",JB="R U R' F' R U R' U' R' F R2 U' R' U'",UB="R2 U R U R' U' R' U' R' U R'",IS=inv(SUNE);
+const P={
+tang1:{c:'#4aa3ff',ic:'🟦',n:'Tầng 1',sub:'Mặt trắng và tầng đầu tiên',end:'🎉 Hoàn thành Tầng 1 – Mặt trắng và tầng đầu tiên đã hoàn chỉnh!',steps:[
+ {t:'Giải dấu cộng trắng',p:'Hãy cầm Rubik với <b>tâm vàng ở trên</b>, tâm trắng ở dưới. Mục tiêu: 4 cạnh trắng nằm quanh tâm trắng, và màu bên cạnh của chúng khớp với tâm. Đừng vội đưa xuống – trước tiên tạo <b>bông hoa cúc</b>: 4 cạnh trắng nằm quanh tâm vàng như 4 cánh hoa. Sau đó xoay tầng trên cho màu bên cạnh trùng với tâm cùng màu, rồi xoay mặt đó <b>180°</b> để đưa ô trắng xuống.',
+  pills:['Trạng thái ban đầu','Bông hoa cúc','Căn màu với tâm','Xoay 180°','Dấu cộng trắng'],
+  d:[{h:'Từ bông hoa cúc đến dấu cộng',f:"U' F2 R2 B2 L2",m:"U' F2 R2 B2 L2",s:"F2 R2 B2 L2 U",c:'Rubik bắt đầu ở hình bông hoa cúc. U\' căn màu cạnh với tâm bên cạnh, sau đó mỗi mặt xoay 180° (số 2). Các góc đang lộn xộn – chưa cần quan tâm.'}]},
+ {t:'Giải 4 góc tầng 1',p:'Mỗi góc trắng phải có đúng 3 màu và nằm giữa đúng 3 tâm tương ứng. Đưa góc cần giải lên tầng trên, đặt nó <b>ngay phía trên</b> vị trí cần giải (góc dưới-phải-trước). Nhìn xem <b>ô trắng</b> của góc đang quay về hướng nào (trước, phải hay lên trên) rồi dùng đúng <b>một</b> trong 3 công thức bên dưới – xong là góc vào đúng chỗ, mặt trắng hướng xuống. Làm tương tự cho cả 4 góc.',
+  w:'Ký hiệu: R = quay mặt phải · U = quay mặt trên · dấu nháy trên (R\') = quay ngược chiều kim đồng hồ · U2 = quay 180°.',
+  d:[{h:'Trường hợp 1: ô trắng quay ra phía TRƯỚC',f:"U R U' R'",m:"U R U' R'",c:'Góc nằm ngay trên ô cần giải, ô trắng hướng về phía bạn.'},{h:'Trường hợp 2: ô trắng quay sang bên PHẢI',f:"R U R'",m:"R U R'",c:'Ô trắng hướng sang mặt phải. Chỉ cần 3 nước.'},{h:'Trường hợp 3: ô trắng quay LÊN trên',f:"R U2 R' U' R U R'",m:"R U2 R' U' R U R'",c:'Ô trắng hướng lên mặt trên (mặt vàng).'}]}]},
+tang2:{c:'#ff8a2b',ic:'🟧',n:'Tầng 2',sub:'Đưa 4 cạnh vào tầng giữa',end:'🔥 Tuyệt vời! Bạn đã hoàn thành 2 tầng đầu tiên.',steps:[
+ {t:'Chuẩn bị',p:'Từ giờ <b>không đụng tới các góc tầng 1</b>. Tìm một cạnh ở tầng trên <b>không có màu vàng</b>. Xoay U cho màu ở mặt trước của cạnh trùng với tâm phía trước. Rồi nhìn màu còn lại (màu ở mặt trên): nó thuộc tâm bên phải → Trường hợp 1; thuộc tâm bên trái → Trường hợp 2.'},
+ {t:'Trường hợp 1: đưa cạnh sang phải',p:'Căn cạnh với tâm phía trước, sau đó dùng công thức này. Các mặt đang quay sẽ sáng lên trong mô hình.',d:[{h:'Cạnh sang phải',f:"U R U' R' U' F' U F",m:"U R U' R' U' F' U F",c:'Nhấn Play, theo dõi nút vàng và mặt đang sáng.'}]},
+ {t:'Trường hợp 2: đưa cạnh sang trái',p:'Căn cạnh với tâm phía trước, màu còn lại thuộc tâm bên trái thì dùng công thức đối xứng.',d:[{h:'Cạnh sang trái',f:"U' L' U L U F U' F'",m:"U' L' U L U F U' F'",c:'Làm lại thoải mái bằng nút 🔄.'},
+  {h:'Trạng thái sau Tầng 2',s:SUNE,m:'',c:'Tầng 1 và tầng 2 hoàn chỉnh, chỉ còn tầng vàng phía trên.'}]}]},
+tang3:{c:'#ffd500',ic:'🟨',n:'Tầng 3',sub:'Tầng vàng – chặng cuối!',end:'',steps:[
+ {t:'Tạo dấu cộng vàng',p:'Nhìn mặt vàng, bạn sẽ gặp 4 hình: <b>chấm</b>, <b>chữ L</b>, <b>đường thẳng</b>, <b>dấu cộng</b>. Chữ L: đặt ở góc trên-trái (hai cạnh vàng ở phía sau và bên trái). Đường thẳng: đặt nằm ngang. Rồi dùng công thức, lặp tới khi có dấu cộng.',
+  pills:['Chấm','Chữ L','Đường thẳng','Dấu cộng'],
+  d:[{h:'Đường thẳng → dấu cộng',f:F1,m:F1,c:'Đường thẳng nằm ngang, làm 1 lần.'},{h:'Chữ L → đường thẳng → dấu cộng',f:F1,m:rep(F1,2),c:'Từ chữ L, làm lần 1 ra đường thẳng ngang, lần 2 ra dấu cộng.'}]},
+ {t:'Hoàn thành mặt vàng (7 trường hợp)',p:'Mục tiêu: cả 4 góc đều có ô vàng hướng lên. Mọi trường hợp chỉ dùng <b>một công thức Sune</b> – điều quan trọng là <b>cách đặt khối</b>. Đếm số góc đã có ô vàng hướng lên: <b>1 góc</b> → xoay cả khối cho góc đó nằm ở <b>trước-trái</b>. <b>0 hoặc 2 góc</b> → xoay cả khối cho góc trước-trái có <b>ô vàng quay sang mặt trái</b>. Làm công thức, đếm lại, đặt lại khối rồi làm tiếp – tối đa 3 lần là đủ mặt vàng.',w:'y = xoay cả khối (cầm lại Rubik), không phải xoay một mặt. Kéo chuột để đi vòng quanh Rubik và bấm “Nhìn từ trên” để thấy rõ hình mặt vàng.',d:[{h:'1. Sune (cá): ô vàng của góc trước-phải quay ra trước',f:SUNE,m:SUNE,c:'Chỉ có 1 góc vàng, đặt ở trước-trái. Làm 1 lần là xong.'},{h:'2. Anti-Sune: ô vàng của góc trước-phải quay sang phải',f:SUNE,m:SUNE+' y2 '+SUNE,c:'Góc vàng ở trước-trái. Làm 1 lần, xoay khối 180° (y2) cho góc vàng về trước-trái, làm lần 2.'},{h:'3. Chữ H: 0 góc vàng, bên trái và bên phải mỗi bên 2 ô vàng',f:SUNE,m:SUNE+' '+SUNE,c:'Ô vàng của góc trước-trái quay sang trái. Làm 2 lần liên tiếp.'},{h:'4. Chữ Pi: 0 góc vàng, mặt sau có 2 ô vàng',f:SUNE,m:SUNE+' y '+SUNE,c:'Ô vàng của góc trước-trái quay sang trái. Làm 1 lần, xoay khối (y) cho góc vàng về trước-trái, làm lần 2.'},{h:'5. Chữ U: 2 góc vàng kề nhau, 2 ô vàng còn lại cùng quay sang trái',f:SUNE,m:`${SUNE} y ${SUNE} y' ${SUNE}`,s:`${IS} y ${IS} y' ${IS}`,c:'2 góc vàng ở bên phải. Làm 3 lần, giữa các lần đặt lại khối theo quy tắc.'},{h:'6. Chữ T: 2 góc vàng kề nhau, 2 ô vàng còn lại quay ra hai bên',f:SUNE,m:`${SUNE} y2 ${SUNE} y' ${SUNE}`,s:`${IS} y2 ${IS} y' ${IS} y'`,c:'2 góc vàng ở phía sau. Làm 3 lần, giữa các lần đặt lại khối theo quy tắc.'},{h:'7. Chữ L: 2 góc vàng chéo nhau',f:SUNE,m:SUNE+' '+SUNE+' '+SUNE,c:'Ô vàng của góc trước-trái quay sang trái. Làm 3 lần liên tiếp.'}]},
+ {t:'Đưa các góc vàng về đúng vị trí',p:'Công thức dưới đây (gọi là <b>J-perm, dạng Jb</b>) đổi chỗ 2 góc ở bên phải mà <b>không làm hỏng mặt vàng và 2 tầng đầu</b>. Tìm <b>“đèn pha”</b>: 2 góc kề nhau có màu bên hông giống nhau. Xoay tầng trên (U) cho cặp đèn pha khớp màu với tâm, rồi xoay cả khối để cặp này nằm ở mặt <b>trái</b> và làm công thức 1 lần. Nếu chưa có đèn pha, cứ làm công thức 1 lần ở hướng bất kỳ – đèn pha sẽ xuất hiện, rồi làm thêm 1 lần nữa.',
+  w:'Trong quá trình làm, Rubik có thể trông như bị rối. Đừng lo! Hãy tiếp tục đúng thứ tự.',d:[{h:'Có đèn pha ở bên trái',f:JB,m:JB,c:'2 góc bên trái đứng yên, 2 góc bên phải đổi chỗ.'},{h:'Chưa có đèn pha: làm 2 lần',f:JB,m:`${JB} y2 ${JB} y2`,c:'Làm lần 1, xoay cả khối 180° (y2) để đèn pha sang bên trái, làm lần 2, rồi xoay khối lại như cũ.'}]},
+ {t:'Hoàn thành các cạnh cuối',p:'Đặt một cạnh đã đúng (màu bên hông trùng tâm) ở mặt <b>sau</b>. Nếu chưa có cạnh nào đúng, làm công thức một lần ở hướng bất kỳ rồi kiểm tra lại. Công thức xoay vòng 3 cạnh còn lại: trước → trái → phải → trước.',
+  d:[{h:'Trường hợp 1: làm 1 lần',f:UB,m:UB,c:'Nếu các cạnh khớp tâm sau 1 lần thì khối Rubik đã hoàn thành.'},{h:'Trường hợp 2: làm 2 lần liên tiếp',f:UB,m:UB+' '+UB,c:'Nếu sau 1 lần các cạnh vẫn chưa khớp, làm thêm 1 lần nữa (tổng 2 lần) là hoàn thành khối Rubik.'}]}]}
+};
+
+/* ===== ICON CUBE (SVG, n = số tầng đã hoàn thành) ===== */
+function cubeIcon(n,s=46){
+ const a=6.06,b=3.5,e=7,cx=20,t=1.5,G='#3a3f5c';
+ const pl=(pts,f)=>`<polygon points="${pts.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="${f}"/>`;
+ let o='';
+ const P=(x,y)=>[cx+(x-y)*a,t+(x+y)*b],Q=(x,y)=>[cx-3*a+x*a,t+3*b+x*b+y*e],R=(x,y)=>[cx+x*a,t+6*b-x*b+y*e];
+ for(let i=0;i<3;i++)for(let j=0;j<3;j++)o+=pl([P(i,j),P(i+1,j),P(i+1,j+1),P(i,j+1)],n===3?'#ffd500':G);
+ for(let c=0;c<3;c++)for(let r=0;r<3;r++){const on=r>=3-n;
+  o+=pl([Q(c,r),Q(c+1,r),Q(c+1,r+1),Q(c,r+1)],on?'#14a44d':G)+pl([R(c,r),R(c+1,r),R(c+1,r+1),R(c,r+1)],on?'#ff6a13':G)}
+ return `<svg width="${s}" height="${Math.round(s*1.1)}" viewBox="0 0 40 44" style="vertical-align:middle" aria-hidden="true"><g stroke="#0b0d17" stroke-width=".7" stroke-linejoin="round">${o}</g></svg>`}
+
+/* ===== DỰNG TRANG ===== */
+let K=0;const DM={};
+const demoH=(d,k)=>`<div class="demo" data-k="${k}"><div class="cv"></div><div class="side"><h3>${d.h||''}</h3>${d.f?`<div class="big">${d.f}</div>`:''}<div class="chips">${d.m?d.m.split(' ').map(x=>`<b class="chip">${x}</b>`).join(''):''}</div><p class="cap">${d.c||''}</p>${d.m?`<div class="btns"><button class="pl">▶ Play</button><button class="rp">🔄 Làm lại</button><button class="vw">👁 Nhìn từ trên</button><button class="sp">🔁 Xoay quanh</button></div>`:''}</div></div>`;
+for(const id in P){const t=P[id];
+ const ss=t.steps.map((s,i)=>`<section class="step" id="${id}s${i}"><div class="card" style="--pc:${t.c}"><div class="tag" style="color:${t.c}">BƯỚC ${i+1}</div><h2>${s.t}</h2><p>${s.p}</p>${s.pills?`<div class="pills">${s.pills.map((x,j)=>`<div><b>${j+1}</b>${x}</div>`).join('')}</div>`:''}${s.w?`<div class="warn">${s.w}</div>`:''}${(s.d||[]).map(d=>{DM[K]=d;return demoH(d,K++)}).join('')}</div></section>`).join('');
+ let fin;
+ if(id==='tang3'){DM[K]={s:'',m:'',spin:1};fin=`<section class="fin" id="${id}fin"><h2>🏆 CHÚC MỪNG!<br>BẠN ĐÃ GIẢI XONG RUBIK 3x3!</h2><div class="demo" data-k="${K++}" style="display:block;background:none;border:0;padding:0"><div class="cv"></div></div><button onclick="conf()">🎊 Bắn confetti</button></section>`}
+ else fin=`<section class="fin" id="${id}fin"><h2>${t.end}</h2><p>${id==='tang1'?'Tiếp theo: Tầng 2.':'Tiếp theo: Tầng 3 – chặng cuối!'}</p><a class="back" style="display:inline-block;margin:0" href="#tang${+id.slice(4)+1}">Sang tầng tiếp theo</a></section>`;
+ $('#'+id).innerHTML=`<div class="hero" style="text-align:left;padding-bottom:0"><h1 style="color:${t.c}">${cubeIcon(+id.slice(4),38)} ${t.n} – ${t.sub}</h1></div>`+ss+fin;
+ $('#tiers').insertAdjacentHTML('beforeend',`<a class="tier" style="--c:${t.c}" href="#${id}"><i>${cubeIcon(+id.slice(4))}</i><b>${t.n}</b><span>${t.sub}</span></a>`);
+}
+function conf(){for(let i=0;i<60;i++){const e=document.createElement('i');e.className='cf';e.style.cssText=`left:${Math.random()*100}vw;background:hsl(${Math.random()*360} 90% 60%);animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*.6}s`;document.body.append(e);setTimeout(()=>e.remove(),5500)}}
+
+function initDemo(el){
+ const d=DM[el.dataset.k],cv=$('.cv',el);cv.innerHTML='';
+ const ch=[...el.querySelectorAll('.chip')],pl=$('.pl',el),rp=$('.rp',el);
+ const sync=()=>{if(pl)pl.textContent=cube.play?'⏸ Pause':(cube.mv.length&&cube.i>=cube.mv.length)?'▶ Xem lại':'▶ Play'};
+ const cube=new Cube(cv,{setup:d.s!==undefined?d.s:inv(d.m),spin:d.spin,
+  onStep:i=>ch.forEach((c,j)=>c.className='chip'+(j===i?' on':j<i?' done':'')),
+  onEnd:()=>{ch.forEach(c=>c.className='chip done');sync()}});
+ cube.mv=d.m?d.m.split(' '):[];cube.reset();
+ const vw=$('.vw',el),sp=$('.sp',el);
+ if(vw){let tp=false;vw.onclick=()=>{tp=!tp;cube.root.rotation.set(tp?1.45:.55,tp?0:-.7,0);vw.textContent=tp?'👁 Nhìn nghiêng':'👁 Nhìn từ trên'};sp.onclick=()=>{cube.o.spin=!cube.o.spin;sp.textContent=cube.o.spin?'⏹ Dừng xoay':'🔁 Xoay quanh'}}
+ if(pl){pl.onclick=()=>{if(cube.play)cube.play=false;else{if(cube.i>=cube.mv.length)cube.reset();cube.play=true}sync()};
+  rp.onclick=()=>{cube.reset();cube.play=true;sync()}}
+}
+let winIO=null;
+function route(){
+ const h=location.hash.slice(1),id=P[h]?h:'home';
+ live.forEach(c=>c.dispose());winIO&&winIO.disconnect();
+ document.querySelectorAll('.page').forEach(p=>p.hidden=p.id!==id);
+ scrollTo({top:0,behavior:'instant'});document.body.dataset.pg=id;
+ if(id==='home'){$('#hero').innerHTML='';new Cube($('#hero'),{spin:1}).reset()}
+ else{
+  const t=P[id];document.documentElement.style.setProperty('--tc',t.c);
+  document.querySelectorAll('#'+id+' .demo').forEach(initDemo);
+  $('#toc').innerHTML=t.steps.map((s,i)=>`<button data-t="${id}s${i}">Bước ${i+1}: ${s.t}</button>`).join('')+`<button data-t="${id}fin">🏁 Kết thúc</button>`;
+  $('#toc').onclick=e=>{const b=e.target.closest('button');b&&document.getElementById(b.dataset.t).scrollIntoView({behavior:'smooth'})};
+  if(id==='tang3'){winIO=new IntersectionObserver(e=>{if(e[0].isIntersecting){conf();winIO.disconnect()}},{threshold:.6});winIO.observe($('#tang3fin'))}
+ }
+ onScroll();
+}
+function onScroll(){
+ const id=document.body.dataset.pg;if(id==='home')return;
+ const m=document.documentElement.scrollHeight-innerHeight;
+ $('#pg').style.width=(m>0?scrollY/m*100:0)+'%';
+ let a=null;document.querySelectorAll('#toc button').forEach(b=>{if(document.getElementById(b.dataset.t).getBoundingClientRect().top<innerHeight*.4)a=b});
+ document.querySelectorAll('#toc button').forEach(b=>b.classList.toggle('on',b===a));
+ if(a&&a!==onScroll.l){onScroll.l=a;const T=$('#toc');T.scrollTo({left:a.getBoundingClientRect().left-T.getBoundingClientRect().left+T.scrollLeft-(T.clientWidth-a.offsetWidth)/2})}
+}
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('hashchange',route);
+route();
+</script></body></html>
